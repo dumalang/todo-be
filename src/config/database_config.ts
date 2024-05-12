@@ -9,6 +9,7 @@ interface IDatabaseConfig {
   db: string;
   username: string;
   password: string;
+  debug: boolean;
 }
 
 const databaseConfig: IDatabaseConfig = {
@@ -18,6 +19,7 @@ const databaseConfig: IDatabaseConfig = {
   db: process.env.DB_DATABASE || '',
   username: process.env.DB_USERNAME || '',
   password: process.env.DB_PASSWORD || '',
+  debug: process.env.DB_DEBUG === 'true' || false,
 };
 
 export {databaseConfig};

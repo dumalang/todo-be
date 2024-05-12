@@ -6,6 +6,7 @@ import {databaseConfig} from './src/config/database_config';
 const config: {[key: string]: Knex.Config} = {
   development: {
     client: 'mysql2',
+    debug: databaseConfig.debug,
     connection: {
       user: databaseConfig.username,
       host: databaseConfig.host,
@@ -20,6 +21,7 @@ const config: {[key: string]: Knex.Config} = {
 
   test: {
     client: 'sqlite3',
+    debug: databaseConfig.debug,
     connection: {
       filename: './db.sqlite3',
     },
@@ -31,6 +33,7 @@ const config: {[key: string]: Knex.Config} = {
 
   production: {
     client: 'mysql2',
+    debug: databaseConfig.debug,
     connection: {
       user: databaseConfig.username,
       host: databaseConfig.host,
