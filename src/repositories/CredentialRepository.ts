@@ -9,8 +9,8 @@ export enum ECredentialType {
   EMAIL = 'email',
   PHONE = 'phone',
   USERNAME = 'username',
-  facebook = 'facebook',
-  google = 'google',
+  FACEBOOK = 'facebook',
+  GOOGLE = 'google',
 }
 export interface ICredentialRepositoryData extends IRepositoryData {
   mst_user_id?: number;
