@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  todo_be:
+    image: node:18.20.0-slim
+    container_name: todo-be
+    command:
+      - /bin/bash
+      - -c
+      - |
+        apt-get -y update;apt-get -y install openssl curl fontconfig;
+        cd /www
+        chown root.root .
+        /usr/local/bin/npm install
+        /usr/local/bin/npm run dev
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./:/www
+    env_file:
+      - .env
