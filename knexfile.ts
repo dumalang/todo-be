@@ -19,20 +19,13 @@ const config: {[key: string]: Knex.Config} = {
   },
 
   test: {
-    client: 'mysql2',
+    client: 'sqlite3',
     connection: {
-      user: databaseConfig.username,
-      host: databaseConfig.host,
-      database: databaseConfig.db,
-      password: databaseConfig.password,
+      filename: './db.sqlite3',
     },
     migrations: {
       directory: './database/migrations',
       tableName: 'knex_migrations',
-    },
-    pool: {
-      min: 2,
-      max: 10,
     },
   },
 
