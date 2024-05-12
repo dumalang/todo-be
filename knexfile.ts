@@ -18,7 +18,7 @@ const config: {[key: string]: Knex.Config} = {
     },
   },
 
-  staging: {
+  test: {
     client: 'mysql2',
     connection: {
       user: databaseConfig.username,
@@ -55,4 +55,4 @@ const config: {[key: string]: Knex.Config} = {
   },
 };
 
-module.exports = config;
+export default config;
