@@ -22,6 +22,7 @@ const config: {[key: string]: Knex.Config} = {
   test: {
     client: 'sqlite3',
     debug: databaseConfig.debug,
+    useNullAsDefault: true,
     connection: {
       filename: './db.sqlite3',
     },
