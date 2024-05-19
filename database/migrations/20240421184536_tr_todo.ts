@@ -8,13 +8,12 @@ export async function up(knex: Knex): Promise<void> {
     table.string('uuid', 50);
 
     table.bigInteger('mst_todo_id');
+    table.bigInteger('mst_user_id').nullable();
 
-    table.tinyint('day').nullable();
-    table.tinyint('month').nullable();
-    table.time('time_start_at').nullable();
-    table.time('time_end_at').nullable();
-    table.tinyint('repeat').defaultTo(0);
-    table.enum('repeat_period', ['daily', 'weekly', 'biweekly', 'monthly']);
+    table.dateTime('datetime_start_at').nullable();
+    table.dateTime('datetime_end_at').nullable();
+
+    table.enum('status', ['done', 'skipped']).nullable();
 
     table.timestamps();
     table.dateTime('deleted_at').nullable();

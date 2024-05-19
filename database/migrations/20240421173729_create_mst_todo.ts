@@ -7,6 +7,8 @@ export async function up(knex: Knex): Promise<void> {
     table.bigIncrements();
     table.string('uuid', 50);
 
+    table.bigInteger('mst_user_id').nullable();
+
     table.string('todo').nullable();
     table.text('desc');
 
