@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface IRepository {
-  table?: string;
-  findAll?: (data: IRepositoryParam) => any;
-  findOne?: (data: IRepositoryParam) => any;
-  create?: () => any;
-  update?: () => any;
-  destroy?: () => any;
+  table: string;
+  findAll: (param: IRepositoryParam) => any;
+  findOne: (param: IRepositoryParam) => any;
+  create: (data: IRepositoryData) => any;
+  update: () => any;
+  destroy: () => any;
 }
 
 interface IRepositoryParam {
