@@ -59,7 +59,7 @@ export class CredentialRepository implements IRepository {
   static create(
     data: ICredentialRepositoryData,
     t: Knex.Transaction | null = null
-  ): Knex.QueryBuilder<ICredentialRepositoryData, number[]> {
+  ): Promise<number> {
     const q = DB<any>(this.table);
 
     if (t) {
@@ -68,7 +68,7 @@ export class CredentialRepository implements IRepository {
 
     data.created_at = databaseFormat(moment());
 
-    return q.insert(data);
+    return q.insert(data).then(result => result[0]);
   }
 
   static update(

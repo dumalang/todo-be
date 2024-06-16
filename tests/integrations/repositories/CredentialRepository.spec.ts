@@ -15,29 +15,28 @@ describe('Credential Repository Crud Test', () => {
   });
   it('create success', async () => {
     const createResult = await CredentialRepository.create(createData);
-    expect(Array.isArray(createResult)).toBe(true);
+    expect(createResult).toEqual(expect.any(Number));
   });
   it('findOne success', async () => {
     const createResult = await CredentialRepository.create(createData);
     const findOneResult = await CredentialRepository.findOne({
       q: {
-        id: createResult[0],
+        id: createResult,
       },
     });
-    expect(findOneResult?.id).toBe(createResult[0]);
+    expect(findOneResult?.id).toBe(createResult);
   });
   it('findAll success', async () => {
     const createResult = await CredentialRepository.create(createData);
     const findAllResult = await CredentialRepository.findAll({
       q: {
-        id: createResult[0],
+        id: createResult,
       },
     });
-    expect(findAllResult[0].id).toBe(createResult[0]);
+    expect(findAllResult[0].id).toBe(createResult);
   });
   it('update success', async () => {
-    const createResult = await CredentialRepository.create(createData);
-    const createdId = createResult[0];
+    const createdId = await CredentialRepository.create(createData);
     const expectedMstUserId = 4321;
     const updateResult = await CredentialRepository.update(
       {
@@ -59,8 +58,7 @@ describe('Credential Repository Crud Test', () => {
     expect(findOneResult?.updated_at).not.toBeNull();
   });
   it('destroy success', async () => {
-    const createResult = await CredentialRepository.create(createData);
-    const createdId = createResult[0];
+    const createdId = await CredentialRepository.create(createData);
     const destroyResult = await CredentialRepository.destroy({
       q: {
         id: createdId,

@@ -14,29 +14,28 @@ describe('User Repository Crud Test', () => {
   });
   it('create success', async () => {
     const createResult = await UserRepository.create(createData);
-    expect(Array.isArray(createResult)).toBe(true);
+    expect(createResult).toEqual(expect.any(Number));
   });
   it('findOne success', async () => {
     const createResult = await UserRepository.create(createData);
     const findOneResult = await UserRepository.findOne({
       q: {
-        id: createResult[0],
+        id: createResult,
       },
     });
-    expect(findOneResult?.id).toBe(createResult[0]);
+    expect(findOneResult?.id).toBe(createResult);
   });
   it('findAll success', async () => {
     const createResult = await UserRepository.create(createData);
     const findAllResult = await UserRepository.findAll({
       q: {
-        id: createResult[0],
+        id: createResult,
       },
     });
-    expect(findAllResult[0].id).toBe(createResult[0]);
+    expect(findAllResult[0].id).toBe(createResult);
   });
   it('update success', async () => {
-    const createResult = await UserRepository.create(createData);
-    const createdId = createResult[0];
+    const createdId = await UserRepository.create(createData);
     const expectedName = 'Edited Name';
     const updateResult = await UserRepository.update(
       {
@@ -58,8 +57,7 @@ describe('User Repository Crud Test', () => {
     expect(findOneResult?.updated_at).not.toBeNull();
   });
   it('destroy success', async () => {
-    const createResult = await UserRepository.create(createData);
-    const createdId = createResult[0];
+    const createdId = await UserRepository.create(createData);
     const destroyResult = await UserRepository.destroy({
       q: {
         id: createdId,

@@ -49,7 +49,7 @@ export class UserRepository implements IRepository {
   static create(
     data: IUserRepositoryData,
     t: Knex.Transaction | null = null
-  ): Knex.QueryBuilder<IUserRepositoryData, number[]> {
+  ): Promise<number> {
     const q = DB<any>(this.table);
 
     if (t) {
@@ -58,7 +58,7 @@ export class UserRepository implements IRepository {
 
     data.created_at = databaseFormat(moment());
 
-    return q.insert(data);
+    return q.insert(data).then(result => result[0]);
   }
 
   static update(
